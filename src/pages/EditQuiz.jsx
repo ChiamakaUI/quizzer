@@ -1,8 +1,7 @@
-import { ref, onValue, push, update } from "firebase/database";
+import { ref, onValue, update } from "firebase/database";
 import { database } from "../config/firebase";
 import { useParams } from "react-router-dom";
 import EditQuizForm from "../components/EditQuizForm";
-// import Loading from "../components/Loading";
 import { useState, useEffect } from "react";
 import QuestionForm from "../components/QuestionForm";
 
@@ -28,8 +27,6 @@ const EditQuiz = () => {
   useEffect(() => {
     getData();
   }, []);
-
-  console.log(quizQuestions.length);
 
   const pushNewQuestions = (data) => {
     const id = quizQuestions.length;
@@ -70,12 +67,14 @@ const EditQuiz = () => {
       )}
       {newQuestion}
 
-<div className='w-[88%] mx-auto my-5'>
-<button className="bg-[#a45ee5] text-white w-full p-2" onClick={addNewQuestions}>
-        Add Question
-      </button>
-</div>
-      
+      <div className="w-[88%] mx-auto my-5">
+        <button
+          className="bg-[#a45ee5] text-white w-full p-2"
+          onClick={addNewQuestions}
+        >
+          Add Question
+        </button>
+      </div>
     </div>
   );
 };

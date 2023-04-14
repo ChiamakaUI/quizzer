@@ -1,7 +1,8 @@
 import EditQuizInput from "./EditQuizInput";
-import { ref, push, remove, update, onValue } from "firebase/database";
+import { ref, update, onValue } from "firebase/database";
 import { database } from "../config/firebase";
 import { useState, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const EditQuizForm = ({ options, question, answer, quizKey, quizIndex }) => {
   const dbRef = ref(database, `quiz/${quizKey}/questions`);
@@ -24,6 +25,7 @@ const EditQuizForm = ({ options, question, answer, quizKey, quizIndex }) => {
     e.preventDefault();
     const newQuestions = questions.splice(quizIndex, 1);
     update(ref(database, `quiz/${quizKey}/`), { questions: newQuestions });
+    toast.success(`Question deleted`);
   };
 
   const editQuestion = (e) => {
@@ -35,6 +37,7 @@ const EditQuizForm = ({ options, question, answer, quizKey, quizIndex }) => {
       options: optionsState,
     };
     update(ref(database, `quiz/${quizKey}/questions/${quizIndex}`), newValue);
+    toast.success(`Question edited successfully`);
   };
 
   const addNewOption = (e) => {
@@ -64,7 +67,7 @@ const EditQuizForm = ({ options, question, answer, quizKey, quizIndex }) => {
         />
       ))}
       {optionsList}
-      
+
       <div className="flex flex-row justify-between items-center w-full ml-auto my-6 md:w-[45%] lg:w-[28%]">
         <button
           className="bg-[#a45ee5] text-white px-2.5 py-1 rounded"
@@ -80,11 +83,11 @@ const EditQuizForm = ({ options, question, answer, quizKey, quizIndex }) => {
         </button>
       </div>
       <div className='w-[80%] mx-auto'>
-      <button className="bg-[#a45ee5] text-white w-full p-2" onClick={addNewOption}>
-        Add Option
-      </button>
+        <button className="bg-[#a45ee5] text-white w-full p-2" onClick={addNewOption}>
+          Add Option
+        </button>
       </div>
-      
+      <Toaster position="top-right" reverseOrder={false} />
     </form>
   );
 };

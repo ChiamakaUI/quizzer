@@ -4,7 +4,6 @@ export const QuizContext = createContext();
 
 export const QuizContextProvider = ({ children }) => {
   const [quizDetails, setQuizDetails] = useState({ questions: [] });
-  // console.log(quizDetails)
   return (
     <QuizContext.Provider value={{ quizDetails, setQuizDetails }}>
       {children}
@@ -12,4 +11,3 @@ export const QuizContextProvider = ({ children }) => {
   );
 };
 
-// export const useThemeContext = () => useContext(QuizContext);
