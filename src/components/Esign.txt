@@ -1,0 +1,86 @@
+import { Google, Microsoft } from "../../assets/icons";
+
+const loginWithGoogle = () => {
+  window.location.replace("google/redirect");
+};
+
+{loginType === "login" && (
+  <div>
+    <div className="flex flex-row items-center text-base">
+      <hr className="w-[45%]" />
+      <p>Or</p>
+      <hr className="w-[45%]" />
+    </div>
+    <Button
+      className="w-full border border-black p-4 text-base flex flex-row items-center justify-center"
+      onClick={loginWithGoogle}
+    >
+      <Google style={{ width: "20px", marginRight: "6px" }} />
+      Sign in with Google
+    </Button>
+    <Button className="w-full border border-black flex flex-row items-center p-4 my-2 text-base justify-center ">
+      <Microsoft style={{ width: "22px", marginRight: "5px" }} />
+      Log in with Microsoft
+    </Button>
+  </div>
+)}
+
+const products = useDatabaseSnapshot(
+  ["products"],
+  dbRef,
+  {
+    subscribe: true,
+  },
+  {
+    onSuccess(snapshot) {
+      toast.success("Data loaded successfully!");
+    },
+    onError(error) {
+      toast.error("Woops, something went wrong!");
+    },
+  }
+);
+
+if (query.isError) {
+  return <Error error={query.error} />;
+}
+
+if (query.isSuccess) {
+  return <ProductList data={query.data} />;
+}
+
+// function UpdateUser({ id }) {
+//   const dbRef = ref(database, `users/${id}`);
+//   const mutation = useDatabaseUpdateMutation(dbRef);
+
+//   return (
+//     <>
+//       <button
+//         disabled={mutation.isLoading}
+//         onClick={() => {
+//           mutation.mutate({
+//             name: "John Doe",
+//             "address/line1": "Mountain View",
+//           });
+//         }}
+//       >
+//         Update User
+//       </button>
+//       {mutation.isError && <p>{mutation.error.message}</p>}
+//     </>
+//   );
+// }
+
+    // console.log(childSnapshot.val())
+    // console.log(childSnapshot)
+    // console.log(childSnapshot.ref.key)
+
+     // const quizes = useDatabaseValue(["quiz"], dbRef, {
+  //   subscribe: true,
+  // });
+
+  // if (quizes.isLoading) {
+  //   return <Loading />;
+  // }
+  // const snapshot = quizes.data;
+  // console.log(snapshot)
