@@ -1,7 +1,7 @@
 import { BsSearch, BsPlusCircleFill } from "react-icons/bs";
 const Header = ({ showFormFunc }) => {
   return (
-    <div className="flex flex-row justify-between items-center my-4 font-lora w-[20%] ml-auto">
+    <div className="flex flex-row justify-between items-center my-4 font-lora w-[35%] ml-auto lg:w-[20%]">
       <div
         className="flex flex-row items-center cursor-pointer"
         onClick={() => showFormFunc(true)}
